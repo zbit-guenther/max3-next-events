@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Event } from '../../data'
 import { LinkButton, AddressIcon, DateIcon, ArrowRightIcon } from '../'
 import s from './EventItem.module.css'
+import { getDate } from '../../lib/tools'
 
 interface Props {
   event: Event
@@ -9,14 +10,10 @@ interface Props {
 export const EventItem = ({ event }: Props) => {
 
   const { id, title, description, image, location, date } = event
-  const readableDate = new Date(date).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
-  
+  const readableDate = getDate('D MMM YYYY', new Date(date))
   const address = location.replace(', ', '\n')
   const link = `/events/${id}`
+  
   return (
     <li className={s.item}>
       <Image src={'/' + image} alt={title} width={250} height={160} />

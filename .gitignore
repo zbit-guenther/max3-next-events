@@ -7,6 +7,7 @@
 
 # testing
 /coverage
+/x_code
 
 # next.js
 /.next/
@@ -20,9 +21,7 @@
 *.pem
 
 # debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*.log*
 
 # local env files
 .env*

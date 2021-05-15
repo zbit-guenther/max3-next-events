@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Event, getFeaturedEvents, getEventById } from '../../../data'
-import { AddressIcon, DateIcon, ErrorAlert } from '../../../components'
+import { AddressIcon, DateIcon, Comments } from '../../../components'
 import s from './content.module.css'
 import l from './logistics.module.css'
 import Head from 'next/head'
+import { getDate } from '../../../lib/tools'
 
 export async function getStaticPaths() {
   const events = await getFeaturedEvents()
@@ -43,11 +44,13 @@ export default function EventDetailPage({ event }: Props) {
     )
   }
   const { date, location, image, title, description } = event;
-  const humanReadableDate = new Date(date).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
+
+  const readableDate = getDate('D MMM YYYY', new Date(date))
+  // const humanReadableDate = new Date(date).toLocaleDateString('en-GB', {
+  //   day: 'numeric',
+  //   month: 'long',
+  //   year: 'numeric',
+  // });
   const address = location.replace(', ', '\n');
 
   return (
@@ -70,7 +73,7 @@ export default function EventDetailPage({ event }: Props) {
           <li className={l.item}>
             <span className={l.icon}><DateIcon /></span>
             <span className={l.content}>
-              <time>{humanReadableDate}</time>
+              <time>{readableDate}</time>
             </span>
           </li>
           <li className={l.item}>
@@ -84,6 +87,7 @@ export default function EventDetailPage({ event }: Props) {
       <section className={s.content}>
         <p>{description}</p>
       </section>
+      <Comments eventId={event.id} />
     </>
   )
 }

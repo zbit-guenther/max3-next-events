@@ -28,6 +28,10 @@
   cursor: pointer;
 }
 
+.delete {
+  color: red;
+}
+
 .newsletter button:hover,
 .newsletter button:active {
   background-color: #02afa1;
@@ -40,4 +44,14 @@
 
 .control input {
   flex: 1;
+}
+
+.normal {
+  color: black;
+}
+.success {
+  color: green;
+}
+.error {
+  color: red;
 }

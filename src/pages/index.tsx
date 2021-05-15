@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { EventList } from '../components'
+import NewsletterRegistration from '../components/input/NewsletterRegistration'
 import { Event, getFeaturedEvents } from '../data'
 
 interface Props {
@@ -14,6 +15,7 @@ export default function  HomePage({ events }: Props) {
       </Head>
       <div>
         <h1>Featured Events</h1>
+        <NewsletterRegistration />
         <EventList events={events} />
       </div>
     </>
